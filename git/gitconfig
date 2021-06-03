@@ -1,0 +1,9 @@
+[user]
+name = Jakrarat Chunnananda
+email = jade.jch@gmail.com
+[core]
+editor = code
+[color]
+ui = auto
+[init]
+defaultBranch = main

@@ -1,0 +1,27 @@
+export DOTFILES="$HOME/dotfiles"
+
+#-------------------------------------------------
+# VARIABLES
+#-------------------------------------------------
+
+if [ -n "$TMUX" ]; then
+    export TERM="screen-256color"
+else
+    export TERM="xterm-256color"
+fi
+
+# completion
+autoload -U compinit
+compinit
+
+#-------------------------------------------------
+# PROMPT
+#-------------------------------------------------
+PROMPT="%F{246}[%f%F{106}%n%f%F{97}@%f%F{67}%m%f%F{246}][%f%F{218}%~%f%F{246}]%f %F{178}$%f "
+#-------------------------------------------------
+# COMMANDS
+#-------------------------------------------------
+
+for f in "$DOTFILES"/zsh/commands/*.zsh; do
+    source $f
+done
