@@ -1,4 +1,4 @@
-export DOTFILES="$HOME/dotfiles"
+export DOTFILES="$HOME/Documents/projects/dotfiles"
 
 #-------------------------------------------------
 # VARIABLES
@@ -10,14 +10,23 @@ else
     export TERM="xterm-256color"
 fi
 
-# completion
-autoload -U compinit
-compinit
+parse_git_branch() {
+    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
+
+autoload -Uz vcs_info
+precmd() {
+    vcs_info
+}
+
+zstyle ':vcs_info:git:*' formats '[%b]'
 
 #-------------------------------------------------
 # PROMPT
 #-------------------------------------------------
-PROMPT="%F{246}[%f%F{106}%n%f%F{97}@%f%F{67}%m%f%F{246}][%f%F{218}%~%f%F{246}]%f %F{178}$%f "
+setopt PROMPT_SUBST
+
+PROMPT='%F{246}[%f%F{106}%n%f%F{97}@%f%F{67}%m%f%F{246}][%f%F{218}%~%f%F{246}]%f%F{154}${vcs_info_msg_0_}%f %F{178}$%f '
 #-------------------------------------------------
 # COMMANDS
 #-------------------------------------------------

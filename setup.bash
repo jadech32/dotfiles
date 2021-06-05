@@ -9,7 +9,6 @@ first=1
 relink() {
     # If it's already a symlink, do nothing.
     if [ "$(readlink "$HOME/$1")" = "$2" ]; then
-        echo "$1 is already a symlink."
         return
     fi
     if [[ $first = 1 ]]; then
@@ -25,9 +24,10 @@ relink() {
 }
 
 DOTFILES=$(pwd)
+
 # Git
 relink .gitconfig "$DOTFILES/git/gitconfig"
 
-# zsh
+# # zsh
 relink .zshrc "$DOTFILES/zsh/zshrc"
 relink .zlogout "$DOTFILES/zsh/zlogout"
